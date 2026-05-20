@@ -42,10 +42,7 @@ const Profile = () => {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-indigo-500 to-indigo-600 rounded-2xl p-6 text-white">
-          <h2 className="text-lg font-semibold mb-2">Account Security</h2>
-          <p className="text-indigo-100 text-sm">Your account is secured with JWT authentication.</p>
-        </div>
+
       </div>
     </AdminLayout>
   )

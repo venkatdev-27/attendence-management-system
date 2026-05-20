@@ -13,7 +13,7 @@ const Students = () => {
   const [pagination, setPagination] = useState(null)
   const [modalOpen, setModalOpen] = useState(false)
   const [editMode, setEditMode] = useState(null)
-  const [formData, setFormData] = useState({ firstName: '', lastName: '', email: '', mobile: '', gender: '', emergencyContact: '', designation: '', workType: '', course: '', password: '' })
+  const [formData, setFormData] = useState({ firstName: '', lastName: '', email: '', mobile: '', gender: '', emergencyContact: '', designation: '', workType: '', password: '' })
   const { success, error } = useToast()
 
   useEffect(() => { fetchStudents() }, [page, search])
@@ -35,14 +35,14 @@ const Students = () => {
       else { await api.post('/students', formData); success('Student created') }
       setModalOpen(false)
       setEditMode(null)
-      setFormData({ firstName: '', lastName: '', email: '', mobile: '', gender: '', emergencyContact: '', designation: '', workType: '', course: '', password: '' })
+      setFormData({ firstName: '', lastName: '', email: '', mobile: '', gender: '', emergencyContact: '', designation: '', workType: '', password: '' })
       fetchStudents()
     } catch (err) { error(err.response?.data?.message || 'Operation failed') }
   }
 
   const handleEdit = (student) => {
     setEditMode(student._id)
-    setFormData({ firstName: student.firstName || '', lastName: student.lastName || '', email: student.email, mobile: student.mobile || '', gender: student.gender || '', emergencyContact: student.emergencyContact || '', designation: student.designation || '', workType: student.workType || '', course: student.course || '', password: '' })
+    setFormData({ firstName: student.firstName || '', lastName: student.lastName || '', email: student.email, mobile: student.mobile || '', gender: student.gender || '', emergencyContact: student.emergencyContact || '', designation: student.designation || '', workType: student.workType || '', password: '' })
     setModalOpen(true)
   }
 
@@ -52,11 +52,10 @@ const Students = () => {
     catch (err) { error(err.response?.data?.message || 'Failed to delete') }
   }
 
-  const openAddModal = () => { setEditMode(null); setFormData({ firstName: '', lastName: '', email: '', mobile: '', gender: '', emergencyContact: '', designation: '', workType: '', course: '', password: '' }); setModalOpen(true) }
+  const openAddModal = () => { setEditMode(null); setFormData({ firstName: '', lastName: '', email: '', mobile: '', gender: '', emergencyContact: '', designation: '', workType: '', password: '' }); setModalOpen(true) }
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value })
 
-  const courses = ['Web Development', 'Data Science', 'Mobile Development', 'UI/UX Design', 'Cloud Computing', 'DevOps', 'Machine Learning', 'Cybersecurity']
   const designations = ['Trainee', 'Junior Developer', 'Developer', 'Senior Developer', 'Team Lead', 'Intern']
   const workTypes = { wfh: 'WFH', hybrid: 'Hybrid', onsite: 'On-site' }
 
@@ -96,7 +95,7 @@ const Students = () => {
                 : students.map((student, index) => (
                   <tr key={index} className="border-t border-slate-100 dark:border-slate-700/50 table-row-hover">
                     <td className="p-4">
-                      <div><p className="font-medium text-slate-800 dark:text-white">{student.firstName} {student.lastName}</p><p className="text-sm text-slate-500 dark:text-slate-400">{student.email}</p><p className="text-xs text-indigo-500 dark:text-indigo-400 mt-1">{student.course}</p></div>
+                      <div><p className="font-medium text-slate-800 dark:text-white">{student.firstName} {student.lastName}</p><p className="text-sm text-slate-500 dark:text-slate-400">{student.email}</p></div>
                     </td>
                     <td className="p-4 hidden sm:table-cell"><p className="text-sm text-slate-600 dark:text-slate-400">{student.mobile}</p></td>
                     <td className="p-4 hidden md:table-cell text-sm text-slate-600 dark:text-slate-400">{student.designation}</td>
@@ -182,13 +181,7 @@ const Students = () => {
               </select>
             </div>
           </div>
-          <div>
-            <label className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1">Course</label>
-            <select name="course" value={formData.course} onChange={handleChange} className="input-field" required>
-              <option value="">Select Course</option>
-              {courses.map(c => <option key={c} value={c}>{c}</option>)}
-            </select>
-          </div>
+
           {!editMode && (
             <div>
               <label className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1">Password</label>
