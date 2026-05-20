@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-  baseURL: 'https://ams-server-zqpx.onrender.com/api',
+  baseURL: import.meta.env.VITE_API_URL || 'https://ams-server-zqpx.onrender.com/api',
   headers: { 'Content-Type': 'application/json' }
 })
 
