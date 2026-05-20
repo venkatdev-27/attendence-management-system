@@ -1,1 +1,7 @@
-<img src="/path/to/logo.png" alt="HaZa Infotech Logo" class="logo" />
+import logo from "../assets/logo.png";
+
+const Logo = () => (
+  <img src={logo} alt="HaZa Infotech Logo" className="logo" />
+);
+
+export default Logo;
