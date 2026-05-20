@@ -65,3 +65,9 @@ data/
 
 # OS specific
 .DS_Store
+
+# Nginx configs
+nginx/
+
+# Deploy scripts
+deploy.sh
