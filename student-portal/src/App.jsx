@@ -1,9 +1,8 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider } from './context/AuthContext'
 import { ToastProvider } from './context/ToastContext'
 import { ThemeProvider } from './context/ThemeContext'
 import ProtectedRoute from './components/ProtectedRoute'
-import Landing from './pages/Landing'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import StudentDashboard from './pages/StudentDashboard'
@@ -18,7 +17,7 @@ function App() {
         <ToastProvider>
           <Router>
             <Routes>
-              <Route path="/" element={<Landing />} />
+              <Route path="/" element={<Navigate to="/login" replace />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/dashboard" element={<ProtectedRoute><StudentDashboard /></ProtectedRoute>} />
